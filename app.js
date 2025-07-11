@@ -1,61 +1,147 @@
-const express = require("express");
+const express = require('express')
+const fs = require('fs');
+
 const app = express();
-const port = process.env.PORT || 3001;
+const port = 3000;
 
-app.get("/", (req, res) => res.type('html').send(html));
+app.use(express.json());
 
-const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const fakeData = {
+  "data": [
+    {
+      "type": "testType",
+      "id": "test",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "My phone",
+            "keyType": "OWNER",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Alice's device I'm borrowing and logged in to",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "3",
+            "friendlyName": "Alice's device I'm borrowing and logged in to",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 14
+          },
+          {
+            "slotId": "4",
+            "friendlyName": "My other phone",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          }
+        ]
+      }
+    },
+    {
+      "type": "Test",
+      "id": "test123",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "Steve",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Steve",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 1
+          },
+          {
+            "slotId": "3",
+            "friendlyName": "Steve's other device",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 1
+          },
+          {
+            "slotId": "4",
+            "friendlyName": "Steve's other phone",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "testType",
+      "id": "testType",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "Alice",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Alicee",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          }
+        ]
+      }
+    }
+  ]
+};
 
-server.keepAliveTimeout = 120 * 1000;
-server.headersTimeout = 120 * 1000;
+// Define a GET endpoint
+app.get('/api/digital-key/:vehicleId/key-status', (req, res) => {
+  res.json(fakeData);
+});
 
-const html = `
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello from Render!</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script>
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          disableForReducedMotion: true
-        });
-      }, 500);
-    </script>
-    <style>
-      @import url("https://p.typekit.net/p.css?s=1&k=vnd5zic&ht=tk&f=39475.39476.39477.39478.39479.39480.39481.39482&a=18673890&app=typekit&e=css");
-      @font-face {
-        font-family: "neo-sans";
-        src: url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
-        font-style: normal;
-        font-weight: 700;
-      }
-      html {
-        font-family: neo-sans;
-        font-weight: 700;
-        font-size: calc(62rem / 16);
-      }
-      body {
-        background: white;
-      }
-      section {
-        border-radius: 1em;
-        padding: 1em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      Hello from Render!
-    </section>
-  </body>
-</html>
-`
+// Define a POST endpoint with a vehicleId parameter
+app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
+  const vehicleId = req.params.vehicleId;
+  const { token } = req.body; // Assuming the token is sent in the request body
+
+  // Example logic to check for authorization
+  if (!token) {
+    return res.status(401).json({
+      errors: [
+        {
+          status: "Unauthorized",
+          code: "401000",
+          title: "Unauthorized",
+          detail: "Invalid or missing token"
+        }
+      ]
+    });
+  }
+
+  // If the token is valid, respond with success
+  // Here you can implement your logic to send the pairing email
+  res.status(200).json({
+    message: "Pairing email sent successfully",
+    vehicleId: vehicleId
+  });
+});
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+//https.createServer(options, app).listen(port, () => {
+//  console.log('Server listening on port ' + port);
+//});
