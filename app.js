@@ -9,7 +9,7 @@ app.use(express.json());
 const fakeData = {
   "data": [
     {
-      "type": "testType",
+      "type": "OWNER",
       "id": "test",
       "attributes": {
         "digitalKeys": [
