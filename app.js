@@ -6,147 +6,147 @@ const port = 3000;
 
 app.use(express.json());
 
-// const fakeData = {
-//   "data": [
-//     {
-//       "type": "testType",
-//       "id": "test",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "My phone",
-//             "keyType": "OWNER",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Alice's device I'm borrowing and logged in to",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "3",
-//             "friendlyName": "Alice's device I'm borrowing and logged in to",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 14
-//           },
-//           {
-//             "slotId": "4",
-//             "friendlyName": "My other phone",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           }
-//         ]
-//       }
-//     },
-//     {
-//       "type": "Test",
-//       "id": "test123",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "Steve",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Steve",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "3",
-//             "friendlyName": "Steve's other device",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "4",
-//             "friendlyName": "Steve's other phone",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           }
-//         ]
-//       }
-//     },
-//     {
-//       "type": "testType",
-//       "id": "testType",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "Alice",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Alicee",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           }
-//         ]
-//       }
-//     }
-//   ]
-// };
-
 const fakeData = {
   "data": [
     {
-      "cloudIdHash": "slotID1123",
-      "slotId": "Alice123",
-      "userId": "-1",
-      "userName": "Alice",
-      "keyType": "1",
-      "deviceType": "SmartPhone",
-      "terminationStatus": "1",
-      "activationStatus": "1",
-      "secondaryKeyList": [
-        {
-          "slotId": "Alice123", 
-          "userName": "Alice",
-          "deviceType": "SmartPhone",
-          "terminationStatus": "1", 
-          "activationStatus": "0"
-        }
-      ]
+      "type": "testType",
+      "id": "test",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "My phone",
+            "keyType": "OWNER",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Alice's device I'm borrowing and logged in to",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "3",
+            "friendlyName": "Alice's device I'm borrowing and logged in to",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 14
+          },
+          {
+            "slotId": "4",
+            "friendlyName": "My other phone",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          }
+        ]
+      }
     },
     {
-      "cloudIdHash": "slotID12",
-      "slotId": "Paul",
-      "userId": "-1",
-      "userName": "Paul",
-      "keyType": "2",
-      "deviceType": "SmartPhone",
-      "terminationStatus": "1",
-      "activationStatus": "1",
-      "secondaryKeyList": [
-        {
-          "slotId": "Paul", 
-          "userName": "Alice",
-          "deviceType": "Smartphone",
-          "terminationStatus": "1",
-          "activationStatus": "0"
-        }
-      ]
+      "type": "Test",
+      "id": "test123",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "Steve",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Steve",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 1
+          },
+          {
+            "slotId": "3",
+            "friendlyName": "Steve's other device",
+            "keyType": "SHARED",
+            "deviceType": "WATCH",
+            "status": 1
+          },
+          {
+            "slotId": "4",
+            "friendlyName": "Steve's other phone",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 1
+          }
+        ]
+      }
     },
+    {
+      "type": "testType",
+      "id": "testType",
+      "attributes": {
+        "digitalKeys": [
+          {
+            "slotId": "1",
+            "friendlyName": "Alice",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          },
+          {
+            "slotId": "2",
+            "friendlyName": "Alicee",
+            "keyType": "SHARED",
+            "deviceType": "PHONE",
+            "status": 15
+          }
+        ]
+      }
+    }
   ]
 };
+
+// const fakeData = {
+//   "data": [
+//     {
+//       "cloudIdHash": "slotID1123",
+//       "slotId": "Alice123",
+//       "userId": "-1",
+//       "userName": "Alice",
+//       "keyType": "1",
+//       "deviceType": "SmartPhone",
+//       "terminationStatus": "1",
+//       "activationStatus": "1",
+//       "secondaryKeyList": [
+//         {
+//           "slotId": "Alice123", 
+//           "userName": "Alice",
+//           "deviceType": "SmartPhone",
+//           "terminationStatus": "1", 
+//           "activationStatus": "0"
+//         }
+//       ]
+//     },
+//     {
+//       "cloudIdHash": "slotID12",
+//       "slotId": "Paul",
+//       "userId": "-1",
+//       "userName": "Paul",
+//       "keyType": "2",
+//       "deviceType": "SmartPhone",
+//       "terminationStatus": "1",
+//       "activationStatus": "1",
+//       "secondaryKeyList": [
+//         {
+//           "slotId": "Paul", 
+//           "userName": "Alice",
+//           "deviceType": "Smartphone",
+//           "terminationStatus": "1",
+//           "activationStatus": "0"
+//         }
+//       ]
+//     },
+//   ]
+// };
 
 // Define a GET endpoint
 app.get('/api/digital-key/:vehicleId/key-status', (req, res) => {
