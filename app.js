@@ -6,105 +6,6 @@ const port = 3000;
 
 app.use(express.json());
 
-// const fakeData = {
-//   "data": [
-//     {
-//       "type": "testType",
-//       "id": "test",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "My phone",
-//             "keyType": "OWNER",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Alice's device I'm borrowing and logged in to",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "3",
-//             "friendlyName": "Alice's device I'm borrowing and logged in to",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 14
-//           },
-//           {
-//             "slotId": "4",
-//             "friendlyName": "My other phone",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           }
-//         ]
-//       }
-//     },
-//     {
-//       "type": "Test",
-//       "id": "test123",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "Steve",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Steve",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "3",
-//             "friendlyName": "Steve's other device",
-//             "keyType": "SHARED",
-//             "deviceType": "WATCH",
-//             "status": 1
-//           },
-//           {
-//             "slotId": "4",
-//             "friendlyName": "Steve's other phone",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 1
-//           }
-//         ]
-//       }
-//     },
-//     {
-//       "type": "testType",
-//       "id": "testType",
-//       "attributes": {
-//         "digitalKeys": [
-//           {
-//             "slotId": "1",
-//             "friendlyName": "Alice",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           },
-//           {
-//             "slotId": "2",
-//             "friendlyName": "Alicee",
-//             "keyType": "SHARED",
-//             "deviceType": "PHONE",
-//             "status": 15
-//           }
-//         ]
-//       }
-//     }
-//   ]
-// };
-
 const fakeData = {
   "data": [
     {
@@ -115,28 +16,28 @@ const fakeData = {
           {
             "slotId": "1",
             "friendlyName": "My phone",
-            "keyType": "1",
+            "keyType": "OWNER",
             "deviceType": "PHONE",
             "status": 1
           },
           {
             "slotId": "2",
             "friendlyName": "Alice's device I'm borrowing and logged in to",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 1
           },
           {
             "slotId": "3",
             "friendlyName": "Alice's device I'm borrowing and logged in to",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "WATCH",
             "status": 14
           },
           {
             "slotId": "4",
             "friendlyName": "My other phone",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 15
           }
@@ -151,28 +52,28 @@ const fakeData = {
           {
             "slotId": "1",
             "friendlyName": "Steve",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 1
           },
           {
             "slotId": "2",
             "friendlyName": "Steve",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "WATCH",
             "status": 1
           },
           {
             "slotId": "3",
             "friendlyName": "Steve's other device",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "WATCH",
             "status": 1
           },
           {
             "slotId": "4",
             "friendlyName": "Steve's other phone",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 1
           }
@@ -187,14 +88,14 @@ const fakeData = {
           {
             "slotId": "1",
             "friendlyName": "Alice",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 15
           },
           {
             "slotId": "2",
             "friendlyName": "Alicee",
-            "keyType": "2",
+            "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 15
           }
