@@ -115,20 +115,6 @@ app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
   const vehicleId = req.params.vehicleId;
   const { token } = req.body; // Assuming the token is sent in the request body
 
-  // Example logic to check for authorization
-  if (!token) {
-    return res.status(401).json({
-      errors: [
-        {
-          status: "Unauthorized",
-          code: "401000",
-          title: "Unauthorized",
-          detail: "Invalid or missing token"
-        }
-      ]
-    });
-  }
-
   // If the token is valid, respond with success
   // Here you can implement your logic to send the pairing email
   res.status(200).json({
