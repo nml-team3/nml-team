@@ -36,7 +36,7 @@ const fakeData = {
           },
           {
             "slotId": "4",
-            "friendlyName": "My other phone",
+            "friendlyName": "Sinziana",
             "keyType": "SHARED",
             "deviceType": "PHONE",
             "status": 15
