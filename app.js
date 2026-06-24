@@ -135,21 +135,47 @@ app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
   });
 });
 
-app.get('/idm-qrlogin/:env/:region/:action', (req, res) => {
+app.get('/idm-qrlogin/stg/eu', (req, res) => {
+  const message = "Hello Nissan STAGING from EU"
+  return res.send(message);
+});
+
+app.get('/idm-qrlogin/stg/us', (req, res) => {
+  const message = "Hello Nissan STAGING from US"
+  return res.send(message);
+});
+
+app.get('/idm-qrlogin/prd/eu', (req, res) => {
+  const message = "Hello Nissan PROD from EU"
+  return res.send(message);
+});
+
+app.get('/idm-qrlogin/prd/us', (req, res) => {
+  const message = "Hello Nissan PROD from US"
+  return res.send(message);
+});
+
+const urlMap = {
+  stg: {
+    us: 'https://digital-key.onrender.com/idm-qrlogin/stg/us',
+    eu: 'https://digital-key.onrender.com/idm-qrlogin/stg/eu',
+  },
+  prd: {
+    us: 'https://digital-key.onrender.com/idm-qrlogin/prd/us',
+    eu: 'https://digital-key.onrender.com/idm-qrlogin/prd/eu',
+  }
+};
+
+app.get('/idm-qrlogin/:env/:region/', (req, res) => {
   const { env, region } = req.params;
 
-  const labels = {
-    stg: { us: 'Hello Nissan US', eu: 'Hello Nissan EU' },
-    prd: { us: 'Hello Nissan US', eu: 'Hello Nissan EU' },
-  };
+  const targetUrl = urlMap[env]?.[region];
 
-  const message = labels[env]?.[region];
-
-  if (!message) {
-    return res.status(404).send(`No config for env=${env} region=${region}`);
+  if (!targetUrl) {
+    return res.status(404).json({ error: `No URL configured for env=${env} region=${region}` });
   }
 
-  return res.send(message);
+  return res.redirect(`${targetUrl}`);
 });
 
 
