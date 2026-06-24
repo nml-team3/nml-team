@@ -138,12 +138,14 @@ app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
 const urlMap = {
   stg: {
     us: 'https://www.google.com',
-    eu: 'https://www.google.ro',
+    asia: 'https://www.google.ro',
+    emea: 'https://www.google.ro',
   },
   prd: {
     us: 'https://www.google.com',
-    eu: 'https://www.google.ro',
-  }
+    asia: 'https://www.google.ro',
+    emea: 'https://www.google.ro',
+  },
 };
 
 app.get('/idm-qrlogin/:env/:region', (req, res) => {
