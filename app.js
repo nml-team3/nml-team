@@ -175,7 +175,7 @@ app.get('/idm-qrlogin/:env/:region/', (req, res) => {
     return res.status(404).json({ error: `No URL configured for env=${env} region=${region}` });
   }
 
-  return res.redirect(`${targetUrl}`);
+  return res.send(targetUrl);
 });
 
 
