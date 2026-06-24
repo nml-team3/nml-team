@@ -105,17 +105,6 @@ const fakeData = {
   ]
 };
 
-const urlMap = {
-  stg: {
-    us: 'https://www.nissan.co.jp',
-    eu: 'https://www.nissan.ro',
-  },
-  prd: {
-    us: 'https://www.google.com',
-    eu: 'https://www.google.ro',
-  }
-};
-
 app.get('/idm-qrlogin/:env/:region/:action', (req, res) => {
   const { env, region, action } = req.params;
 
@@ -147,15 +136,20 @@ app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
 });
 
 app.get('/idm-qrlogin/:env/:region/:action', (req, res) => {
-  const { env, region, action } = req.params;
+  const { env, region } = req.params;
 
-  const targetUrl = urlMap[env]?.[region];
+  const labels = {
+    stg: { us: 'Hello Nissan US', eu: 'Hello Nissan EU' },
+    prd: { us: 'Hello Nissan US', eu: 'Hello Nissan EU' },
+  };
 
-  if (!targetUrl) {
-    return res.status(404).json({ error: `No URL configured for env=${env} region=${region}` });
+  const message = labels[env]?.[region];
+
+  if (!message) {
+    return res.status(404).send(`No config for env=${env} region=${region}`);
   }
 
-  return res.redirect(`${targetUrl}/${action}`);
+  return res.send(message);
 });
 
 
