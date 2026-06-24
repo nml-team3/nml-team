@@ -105,6 +105,29 @@ const fakeData = {
   ]
 };
 
+const urlMap = {
+  stg: {
+    us: 'https://www.nissan.co.jp',
+    eu: 'https://www.nissan.ro',
+  },
+  prd: {
+    us: 'https://www.google.com',
+    eu: 'https://www.google.ro',
+  }
+};
+
+app.get('/idm-qrlogin/:env/:region/:action', (req, res) => {
+  const { env, region, action } = req.params;
+
+  const targetUrl = urlMap[env]?.[region];
+
+  if (!targetUrl) {
+    return res.status(404).json({ error: `No URL configured for env=${env} region=${region}` });
+  }
+
+  return res.redirect(`${targetUrl}/${action}`);
+});
+
 // Define a GET endpoint
 app.get('/api/digital-key/:vehicleId/key-status', (req, res) => {
   res.json(fakeData);
@@ -121,6 +144,18 @@ app.post('/api/digital-key/:vehicleId/sendPairingEmail', (req, res) => {
     message: "Pairing email sent successfully",
     vehicleId: vehicleId
   });
+});
+
+app.get('/idm-qrlogin/:env/:region/:action', (req, res) => {
+  const { env, region, action } = req.params;
+
+  const targetUrl = urlMap[env]?.[region];
+
+  if (!targetUrl) {
+    return res.status(404).json({ error: `No URL configured for env=${env} region=${region}` });
+  }
+
+  return res.redirect(`${targetUrl}/${action}`);
 });
 
 
